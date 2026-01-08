@@ -15,13 +15,30 @@
 
 <body>
 
-    <div class="alert-box" id="alert">알림창임<button
-            onclick="document.getElementById('alert').style.display = 'none';">닫기</button></div>
-    <button onclick="document.getElementById('alert').style.display = 'block';">버튼</button>
+    <div class="alert-box" id="alert">알림창임<button onclick="알림창닫기()">닫기</button></div>
+    <button onclick="알림창열기()">버튼</button>
 
+    <!-- 
+        function 문법
+        1. 긴 코드 찗은 단어로 축약 (긴 코드 재사용이 잦을 때도 편리)
+        2. function 작명은 구체적인게 좋음
+        함수명 영어 작명시 1.소문자시작 2.camelCase
+    -->
+
+    <!--
+        자주 겪는 에러
+        1. 조작할 html의 하단에 JS코드를 짜야 잘 실행된다
+        2. 셀렉터 오타 주의 (chrome에서 f12 디버깅해서 찾기)
+        3. 그냥 기본문법 오타
+    -->
 
     <script>
-
+        function 알림창열기() {
+            document.getElementById('alert').style.display = 'block';
+        }
+        function 알림창닫기() {
+            document.getElementById('alert').style.display = 'none';
+        }
     </script>
 
 </body>
