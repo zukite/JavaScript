@@ -3,5 +3,5 @@
     padding: 20px;
     color: white;
     border-radius: 5px;
-    display: none; /* UI숨기는 법 */
+    display: none; /* UI숨기는 법 (none vs block) */
 }
