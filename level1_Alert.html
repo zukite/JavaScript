@@ -16,11 +16,14 @@
 <body>
 
     <div class="alert-box" id="alert">
-        <p>알림창임</p>
-        <button onclick="알림창열기('none')">닫기</button>
+        <p id="title">알림창임</p>
+        <button id="close">닫기</button>
     </div>
-    <button onclick="알림창열기('block','아이디')">버튼1</button>
-    <button onclick="알림창열기('block','비밀번호')">버튼2</button>
+    <!--
+        ** 복잡하면 한글부터 짜고 코드로 옮기기
+    -->
+    <button onclick="알림창('아이디')">버튼1</button>
+    <button onclick="알림창('비밀번호')">버튼2</button>
 
     <!-- 
         function 문법
@@ -37,11 +40,23 @@
     -->
 
     <script>
+        // addEventListener() : id가 close인 것을 찾아 클릭하면 함수안에 있는 코드를 실행시켜줌
+        // => onclick을 사용하지 않는 방법
+        document.getElementById('close').addEventListener('click', function () {
+            document.getElementById('alert').style.display = 'none';
+        });
+
+        function 알림창(구멍) {
+            // 1. p태그 내용을 아이디입력으로 바꿈
+            document.getElementById('title').innerHTML = 구멍 + '입력하세요';
+            // 2. 띄움
+            document.getElementById('alert').style.display = 'block';
+        }
+
 
         // 비슷한 함수가 많으면 가변적인 부분을 구멍(파라미터)을 뚫어 사용
-        function 알림창열기(구멍, 구멍2) {
+        function 알림창열기(구멍) {
             document.getElementById('alert').style.display = 구멍;
-            document.getElementById('alert').innerHTML = 구멍2 + '입력하세요';
         }
         // function 알림창닫기() {
         //     document.getElementById('alert').style.display = 'none';
