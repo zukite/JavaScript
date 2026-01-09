@@ -15,8 +15,12 @@
 
 <body>
 
-    <div class="alert-box" id="alert">알림창임<button onclick="알림창닫기()">닫기</button></div>
-    <button onclick="알림창열기()">버튼</button>
+    <div class="alert-box" id="alert">
+        <p>알림창임</p>
+        <button onclick="알림창열기('none')">닫기</button>
+    </div>
+    <button onclick="알림창열기('block','아이디')">버튼1</button>
+    <button onclick="알림창열기('block','비밀번호')">버튼2</button>
 
     <!-- 
         function 문법
@@ -33,12 +37,15 @@
     -->
 
     <script>
-        function 알림창열기() {
-            document.getElementById('alert').style.display = 'block';
+
+        // 비슷한 함수가 많으면 가변적인 부분을 구멍(파라미터)을 뚫어 사용
+        function 알림창열기(구멍, 구멍2) {
+            document.getElementById('alert').style.display = 구멍;
+            document.getElementById('alert').innerHTML = 구멍2 + '입력하세요';
         }
-        function 알림창닫기() {
-            document.getElementById('alert').style.display = 'none';
-        }
+        // function 알림창닫기() {
+        //     document.getElementById('alert').style.display = 'none';
+        // }
     </script>
 
 </body>
