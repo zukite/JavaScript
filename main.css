@@ -5,3 +5,11 @@
     border-radius: 5px;
     display: none; /* UI숨기는 법 (none vs block) */
 }
+
+.list-group {
+    display: none;
+}
+
+.show {
+    display: block;
+}
