@@ -17,11 +17,49 @@
     <div class="black-bg show-modal">
         <div class="white-bg">
             <h4>로그인하세요</h4>
-            <button class="btn btn-danger" id="close">닫기</button>
+            <!-- 
+            form은 서버로 유저정보 전송하려고 쓰는 것  
+            -->
+            <form action="success.html">
+                <!-- 폼 전송시 이동할 페이지(success.html) 기입란 -->
+                <div class="my-3">
+                    <input type="text" class="form-control" id="idValue">
+                </div>
+                <div class="my-3">
+                    <input type="password" class="form-control" id="pwValue">
+                </div>
+                <button type="submit" class="btn btn-primary" id="send">전송</button>
+                <button type="button" class="btn btn-danger" id="close">닫기</button>
+            </form>
+
         </div>
     </div>
 
-    <button id="login">로그인</button>
+    <script>
+        document.querySelector("#send").addEventListener('click', function () {
+            var idValue = document.getElementById('idValue').value;
+            var pwValue = document.getElementById('pwValue').value;
+
+            if (idValue == '' && pwValue == '') {
+                alert('아이디와 비밀번호를 채우세요');
+            }
+            else if (idValue == '') {
+                alert('아이디를 채우세요');
+            }
+            else if (pwValue == '') {
+                alert('비밀번호 채우세요');
+            }
+            else if (pwValue.length < 6) {
+                alert('6자 미만입니다')
+            }
+        })
+    </script>
+
+    <div class="main-bg">
+        <h4>Shirts on Sale</h4>
+        <button id="login" class="btn btn-danger">로그인</button>
+    </div>
+
 
     <script>
         // document.querySelector('.login').addEventListsener('click', function () {
