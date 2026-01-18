@@ -43,3 +43,8 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+.main-bg {
+    padding: 100px 20px;
+    background: lightgrey;
+}
