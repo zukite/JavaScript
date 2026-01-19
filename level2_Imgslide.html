@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Img Slide</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="main.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div style="overflow: hidden;"> <!-- 넘치는 요소를 숨기기위해 div 생성 -->
+        <div class="slide-container"> <!-- 그림을 담는 div박스 양 옆으로 세개를 나란히 붙여 -->
+            <div class="slide-box">
+                <img src="img/car1.png">
+            </div>
+            <div class="slide-box">
+                <img src="img/car2.png">
+            </div>
+            <div class="slide-box">
+                <img src="img/car3.png">
+            </div>
+        </div>
+    </div>
+
+    <button class="slide-before">이전</button>
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button class="slide-next">다음</button>
+
+    <script>
+        var 지금사진 = 1;
+
+        $('.slide-1').on('click', function () {
+            $('.slide-container').css('transform', 'translateX(0vw)');
+        })
+        $('.slide-2').on('click', function () {
+            $('.slide-container').css('transform', 'translateX(-100vw)');
+            지금사진 = 2;
+        })
+        $('.slide-3').on('click', function () {
+            $('.slide-container').css('transform', 'translateX(-200vw)');
+            지금사진 = 3;
+        })
+        // $('.slide-next').on('click', function () {
+        //     if (지금사진 == 1) {
+        //         $('.slide-container').css('transform', 'translateX(-100vw)');
+        //         지금사진++;
+        //     } else if (지금사진 == 2) {
+        //         $('.slide-container').css('transform', 'translateX(-200vw)');
+        //         지금사진++;
+        //     }
+        // })
+        $('.slide-before').on('click', function () {
+            if (지금사진 == 3) {
+                $('.slide-container').css('transform', 'translateX(-100vw)');
+                지금사진--;
+            } else if (지금사진 == 2) {
+                $('.slide-container').css('transform', 'translateX(0vw)');
+                지금사진--;
+            }
+        })
+
+        $('.slide-next').on('click', function () {
+            $('.slide-container').css('transform', `translateX(-${지금사진}00vw)`);
+            지금사진 += 1;
+        })
+        $('.slide-before').on('click', function () {
+            지금사진 -= 1;
+            $('.slide-container').css('transform', `translateX(-${지금사진}00vw)`);
+
+        })
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
