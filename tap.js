@@ -13,14 +13,40 @@
 var button = $('.tab-button');
 
 // for문 사용할 때 var 말고 let을 사용
-for(let i = 0; i < $('.tab-button').length; i++){
-    $('.tab-button').eq(i).on('click',function(){
-        button.removeClass('orange');
-        $('.tab-button').eq(i).addClass('orange');
-        $('.tab-content').removeClass('show');
-        $('.tab-content').eq(i).addClass('show');
+// for(let i = 0; i < $('.tab-button').length; i++){
+//     button.eq(i).on('click',function(){
+//         탭열기(i);
+// })
+// }
+
+// 이벤트버블링을 알고있으면 이벤트리스너가 많이 필요 없음(아래코드참고)
+// $('.list').click(function(e){
+//     if(e.target == document.querySelectorAll('.tab-button')[0]){
+//         탭열기(0);
+//     }
+//     if(e.target == document.querySelectorAll('.tab-button')[1]){
+//         탭열기(1);
+//     }
+//     if(e.target == document.querySelectorAll('.tab-button')[2]){
+//         탭열기(2);
+//     }
+// })
+
+$('.list').click(function(e){
+    탭열기(e.target.dataset.id);
 })
+
+function 탭열기(숫자){
+    $('.tab-button').removeClass('orange');
+        $('.tab-button').eq(숫자).addClass('orange');
+        $('.tab-content').removeClass('show');
+        $('.tab-content').eq(숫자).addClass('show');
 }
+
+// 정리
+// 1. 함수로 축약할 때 변수있으면 파라미터로 변경하는 것이 좋음
+// 2. data-id로 몰래 정보 숨기기 가능(dataset->이벤트리스너 적게 사용할 때 어떤 것을 눌렀는지 쉽게 파악 가능)
+// 3. 이벤트리스너 1개만 써도 개발가능(=이벤트리스너 줄이면 이점이 있음)
 
 
 
