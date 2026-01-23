@@ -172,7 +172,39 @@
 
     </script>
 
+    <script>
+        // 정렬
+        // 1. a, b는 array 안의 자료
+        // 2. return 오른쪽이 양수면 a를 오른쪽으로
+        // 3. return 오른쪽이 음수면 b를 오른쪽으로
+        // 4. array 안의 자료를 뽑아 a, b에 넣음
+        var arr = [7, 3, 5, 2, 40];
+        arr.sort(function (a, b) {
+            return a - b;
+        });
 
+        // array 자료 원하는 것만 필터링하려면 .filter()
+        // filter() 결과는 새로운 변수에 저장해서 써야함 => 쇼핑몰 가격설정
+        var newarr = arr.filter(function (a) {
+            return a < 4
+        });
+
+        // .sort()는 원본변형 O / .filter()는 원본변형 X 
+        // array 자료 전부 변형하려면 .map() => 국제쇼핑몰 나라별 가격(달러, 원화, 엔화 등)
+        var newarr2 = arr.map(function (a) {
+            return a * 4
+        });
+
+        var desarr = ['다', '가', '나'];
+        desarr.sort(function (a, b) {
+            return (a > b) ? 1 : -1;
+        })
+
+    </script>
+
+    <div class="container my-3">
+        <button class="btn btn-danger" id='price'>가격순정렬</button>
+    </div>
 
     <script>
         var products = [
@@ -198,7 +230,55 @@
 
         })
 
+    </script>
 
+    <div class="container my-3">
+        <button class="btn btn-danger" id='des'>다나가순정렬</button>
+    </div>
+
+    <div class="container my-3">
+        <button class="btn btn-danger" id='six'>6만원이하상품</button>
+    </div>
+
+    <script>
+        var products = [
+            { id: 0, price: 70000, title: 'Blossom Dress' },
+            { id: 1, price: 50000, title: 'Springfield Shirt' },
+            { id: 2, price: 60000, title: 'Black Monastery' }
+        ];
+
+        $('#des').click(function () {
+            products.sort(function (a, b) {
+                return (a.title < b.title) ? 1 : -1;
+            });
+            $('.row').html('');
+            products.forEach((a, i) => {
+                var templet = `<div class="col-sm-4">
+                        <img src="https://placehold.co/600" class="w-100">
+                        <h5>${a.title}</h5>
+                        <p>가격 : ${products[i].price}</p>
+                        </div>`;
+                $('.row').append(templet);
+
+            });
+        })
+
+        $('#six').click(function () {
+            var sixprice = products.filter(function (a) {
+                return a.price <= 60000;
+            });
+            // var sixprice = products.filter(a => a.price <= 60000);  : 화살표함수로도 작성가능
+            $('.row').html('');
+            sixprice.forEach((a, i) => {
+                var templet = `<div class="col-sm-4">
+                        <img src="https://placehold.co/600" class="w-100">
+                        <h5>${a.title}</h5>
+                        <p>가격 : ${sixprice[i].price}</p>
+                        </div>`;
+                $('.row').append(templet);
+
+            });
+        })
 
     </script>
 
