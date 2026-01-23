@@ -14,7 +14,7 @@
 
 <body>
 
-    <div class="card-group container">
+    <!-- <div class="card-group container">
         <div class="card">
             <img src="https://placehold.co/600">
             <div class="card-body">
@@ -38,6 +38,78 @@
                 <p>가격 : 70000</p>
                 <button class="btn btn-danger">주문하기</button>
             </div>
+        </div>
+    </div> -->
+
+    <script>
+
+        // var products = [
+        //     { id: 0, price: 70000, title: 'Blossom Dress' },
+        //     { id: 1, price: 50000, title: 'Springfield Shirt' },
+        //     { id: 2, price: 60000, title: 'Black Monastery' }
+        // ];
+
+        // for (let i = 0; i < products.length; i++) {
+        //     document.querySelectorAll('.card-body h5')[i].innerHTML = products[i].title;
+        //     document.querySelectorAll('.card-body p')[i].innerHTML = `가격 : ${products[i].price}`;
+        // }
+
+    </script>
+
+    <script>
+
+        // 서버란? 유저가 데이터달라고 요청하면 데이터를 보내주는 간단한 프로그램
+        // GET요청은 서버에 있던 데이터를 읽고싶을 때 주로 사용
+        // POST요청은 서버로 데이터를 보내고 싶을 때 사용
+
+        // AJAX란? 서버에 GET, POST 요청을 할 때 새로고침 없이 데이터를 주고받을 수 있게 도와주는 간단한 브라우저 기능
+        // $.get('url~~').done().fail()
+        // $.post('url~~', 전송할 데이터)
+        // .done -> ajax 요청 성공시 실행할 코드
+        // .fail -> ajax 요청 실패시 실행할 코드
+
+        // $.get('https://codingapple1.github.io/price.json').done(function (data) {
+        //     console.log(data.price)
+        // }).fail(function () {
+        //     console.log('실패함')
+        // })
+
+        // fetch('https://codingapple1.github.io/price.json')
+        //     .then(res => res.json())
+        //     .then(function (data) {
+        //         console.log(data)
+        //     })
+        //     .catch(function (error) {
+        //         console.log('실패함')
+        //     });
+
+        // 서버와 데이터를 주고받을 때는 문자만 주고받을 수 있음
+        // Query의 $.get() 이런건 JSON으로 자료가 도착하면 알아서 array/object 자료로 바꿔줌
+        // 기본함수 fetch() 이런건 JSON으로 자료가 도착하면 알아서 array/object 자료로 바꿔주지 않음
+        //그래서 fetch()로 가져온 결과를 array/object로 바꾸고 싶으면 res.json() 이런 코드 한 줄 추가필요
+
+
+    </script>
+
+    <div class="container">
+        <div class="row">
+
+            <!-- <div class="col-sm-4">
+                <img src="https://placehold.co/600" class="w-100">
+                <h5>Card title</h5>
+                <p>가격 : 70000</p>
+            </div>
+            <div class="col-sm-4">
+                <img src="https://placehold.co/600" class="w-100">
+                <h5>Card title</h5>
+                <p>가격 : 70000</p>
+            </div>
+            <div class="col-sm-4">
+                <img src="https://placehold.co/600" class="w-100">
+                <h5>Card title</h5>
+                <p>가격 : 70000</p>
+            </div> -->
+
         </div>
     </div>
 
@@ -49,12 +121,87 @@
             { id: 2, price: 60000, title: 'Black Monastery' }
         ];
 
-        for (let i = 0; i < products.length; i++) {
-            document.querySelectorAll('.card-body h5')[i].innerHTML = products[i].title;
-            document.querySelectorAll('.card-body p')[i].innerHTML = `가격 : ${products[i].price}`;
-        }
+
+        // var templet = `<div class="col-sm-4">
+        //                 <img src="https://placehold.co/600" class="w-100">
+        //                 <h5>Card title</h5>
+        //                 <p>가격 : 70000</p>
+        //                 </div>`;
+
+        // products.forEach(function (a, i) {
+        //     $('.row').append(templet);
+        //     $('.col-sm-4 h5').eq(i).html(products[i].title);
+        //     $('.col-sm-4 p').eq(i).html(`가격 : ${products[i].price}`);
+        // })
+
+        products.forEach((a, i) => {
+            var templet = `<div class="col-sm-4">
+                        <img src="https://placehold.co/600" class="w-100">
+                        <h5>${a.title}</h5>
+                        <p>가격 : ${products[i].price}</p>
+                        </div>`;
+            $('.row').append(templet);
+
+        });
 
     </script>
+
+    <div class="container">
+        <button class="btn btn-danger" id='more'>더보기</button>
+    </div>
+
+    <script>
+        var click = 0;
+        $('#more').click(function () {
+            click += 1;
+            $.get(`https://codingapple1.github.io/js/more${click}.json`).done(function (data) {
+                data.forEach((a, i) => {
+                    var templet = `<div class="col-sm-4">
+                        <img src="https://placehold.co/600" class="w-100">
+                        <h5>${a.title}</h5>
+                        <p>가격 : ${data[i].price}</p>
+                        </div>`;
+                    $('.row').append(templet);
+
+                });
+            })
+            if (click == 2) {
+                $('#more').css('display', 'none');
+            }
+        })
+
+    </script>
+
+
+
+    <script>
+        var products = [
+            { id: 0, price: 70000, title: 'Blossom Dress' },
+            { id: 1, price: 50000, title: 'Springfield Shirt' },
+            { id: 2, price: 60000, title: 'Black Monastery' }
+        ];
+
+        $('#price').click(function () {
+            products.sort(function (a, b) {
+                return a.price - b.price
+            });
+            $('.row').html('');
+            products.forEach((a, i) => {
+                var templet = `<div class="col-sm-4">
+                        <img src="https://placehold.co/600" class="w-100">
+                        <h5>${a.title}</h5>
+                        <p>가격 : ${products[i].price}</p>
+                        </div>`;
+                $('.row').append(templet);
+
+            });
+
+        })
+
+
+
+    </script>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
