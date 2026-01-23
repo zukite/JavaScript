@@ -14,6 +14,69 @@
 
 <body>
 
+    <div class="container mt-3">
+        <div class="card p-3">
+            <span class="car-title">상품명</span>
+            <span class="car-price">가격</span>
+        </div>
+    </div>
+
+    <form class="container my-5 form-group">
+        <p>상품선택</p>
+        <select class="form-select mt-2">
+            <option>모자</option>
+            <option>셔츠</option>
+        </select>
+        <select class="form-select mt-2 form-hide">
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+        </select>
+    </form>
+
+
+
+    <script>
+
+        var car = ['소나타', 50000, 'white'];   // array
+        var car2 = { name: '소나타', price: [50000, 3000, 4000], color: 'white' };    // object
+
+        // array vs object
+        // 1. index / key:value
+        // 2. 순서개념 O / X
+
+        document.querySelector('.car-title').innerHTML = car2.name;
+        document.querySelector('.car-price').innerHTML = car2.price[1];
+
+        // document.querySelectorAll('.form-select')[0].addEventListener('input', function () {
+        //     if (document.querySelectorAll('.form-select option')[1].innerHTML == '셔츠') {
+        //         document.querySelectorAll('.form-select')[1].classList.remove('form-hide')
+        //     }
+        // })
+
+        $('.form-select').eq(0).on('input', function () {
+            var value = $('.form-select').eq(0).val();
+            // var value = this.value;
+            // var value = e.currentTarget.value;
+            if (value == '셔츠') {
+                $('.form-select').eq(1).removeClass('form-hide');
+            } else {
+                $('.form-select').eq(1).addClass('form-hide');
+            }
+        });
+
+
+
+
+
+    </script>
+
+    <!--
+        실제 웹서비스 개발방식
+        1. 서버에서 html을 미리 완성해서 고객에게 보내줌 => server-side rendering
+        2. 서버가 비어있는 html과 데이터만 보내줌(JS를 이용해 고객 브라우저안에서 html완성) => client-side rendering
+    -->
+
     <style>
         ul.list {
             list-style-type: none;
